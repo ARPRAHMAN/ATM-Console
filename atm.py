@@ -22,23 +22,23 @@ def Withdraw(cardHolder):
         if(cardHolder.get_balance() < Withdraw):
             print("SORRY , Insufficient balance :(")
         else:
-            cardHolder.set_balance(cardHolder.get_balance()-Withdraw)
+            cardHolder.set_balance(cardHolder.get_balance()- Withdraw)
             print(" You are good to go, THANK YOU!")
     except:
         print("Invalid Input.")
 def check_balance(cardHolder):
-    print("Current Balance: ",cardHolder.get_balance())
+    print("Current Balance: ",str(cardHolder.get_balance()))
 
-if __name__=="__main__":
-    current_user = cardHolder("","","","")
+if __name__== "__main__":
+    current_user = cardHolder("","","","","")
 
     ##create a repo of cardholders
     list_of_cardHolders = []
     list_of_cardHolders.append(cardHolder("1112220",1111,"Arifur","Rahman",10000.11))
-    list_of_cardHolders.append(cardHolder("1112221",2222,"Mr","Enzo",1000.01))
-    list_of_cardHolders.append(cardHolder("1112222",3333,"Mr","Spoidy",6000.90))
-    list_of_cardHolders.append(cardHolder("1112223",4444,"Mr","Alpha",500.99))
-    list_of_cardHolders.append(cardHolder("1112224",5555,"Mr","Beluga",999.89))
+    list_of_cardHolders.append(cardHolder("1112221",2222,"Enzo","Boss",1000.01))
+    list_of_cardHolders.append(cardHolder("1112222",3333,"Spoidy","Player",6000.90))
+    list_of_cardHolders.append(cardHolder("1112223",4444,"Mark","President",500.99))
+    list_of_cardHolders.append(cardHolder("1112224",5555,"Jhon","President",999.89))
     ##prompt user for debit card number
     debitCardNum =""
     while True:
@@ -54,16 +54,39 @@ if __name__=="__main__":
         except:
             print("Card number not recongnized. Please try again.")
 
-## promt for pin
-while True:
-    try:
-        userPin = int(input("Please enter your PIN: ").strip())
-        if(current_user.get_pin() == userPin):
-            break
-        else:
-            print("Invalid PIN. Please try again.")
+    ## promt for pin
+    while True:
+        try:
+            userPin = int(input("Please enter your PIN: ").strip())
+            if(current_user.get_pin() == userPin):
+                break
+            else:
+                print("Invalid PIN. Please try again.")
             
-    except:
-        print("Invalid PIN. Pleaser try again")
+        except:
+            print("Invalid PIN. Pleaser try again")
          
+    ### print options
+    print("Welcome ",current_user.get_firstName(),":)")
+    option = 0
+    while(True):
+        print_menu()
+        try:
+            option = int(input())
+            if(option == 1):
+               deposit(current_user)
+            elif(option ==2):
+               Withdraw(current_user)
+            elif(option == 3):
+               check_balance(current_user)
+            elif(option == 4):
+               break
+            else:
+               option = 0
+        except:
+            print("Invalid input , Please try again.")
+            
+ 
+    print("Thank you . Have a nice day!")
 
+        
